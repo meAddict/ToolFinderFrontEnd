@@ -42,7 +42,7 @@ function HomeSection() {
     }
 
     return (
-        <div className="grid grid-cols-2 h-screen content-center gap-4">
+        <div className="grid grid-cols-2 h-screen content-center gap-4 bg-black">
             <div className="bg-red-900 grid grid-col content-center flex flex-row justify-center rounded-xl">
                 <div className="font-medium text-white"><FontAwesomeIcon icon={ faMagnifyingGlass } /> Search for tools</div>
             </div>

@@ -73,7 +73,7 @@ function SignUpSection() {
     }
     
     return (
-        <div className="grid grid-cols-2 my-20 content-center gap-4">
+        <div className="grid grid-cols-2 py-20 content-center gap-4 bg-black">
             <div className="bg-red-900 grid grid-col content-center flex flex-row justify-center rounded-xl">
                 <div className="font-medium text-white"><FontAwesomeIcon icon={ faDoorClosed } /> Sign Up Here</div>
             </div>

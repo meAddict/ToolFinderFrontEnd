@@ -2,6 +2,9 @@ import { useState } from "react";
 import ToolsAddition from "./ToolsAddition";
 import ToolsView from "./ToolsMenu";
 import ToolsShow from "./ToolsShow";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function ToolsSection({ sendShopIdValue }) {
     const [isAddTool, setIsAddTool] = useState(false);
@@ -38,7 +41,7 @@ function ToolsSection({ sendShopIdValue }) {
                 isAddTool ? <ToolsAddition transferIsToolAdditionDone={handleIsToolAddtionDone} sendShopIdValue={sendShopIdValue} /> : 
                 <ToolsShow sendShopIdValue={sendShopIdValue} />
             }
-            <button onClick={handleDeleteAccount} type="button" className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">Delete my account</button>
+            <button onClick={handleDeleteAccount} type="button" className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50"><FontAwesomeIcon icon={ faTrash } /> Delete my account</button>
         </div>
     )
 }

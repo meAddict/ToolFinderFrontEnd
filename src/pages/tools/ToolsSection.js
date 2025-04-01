@@ -19,7 +19,7 @@ function ToolsSection({ sendShopIdValue }) {
             <ToolsMenu sendShopIdValue={sendShopIdValue} transferIsAddTool={handleIsAddTool} />
             {
                 isAddTool ? <ToolsAddition transferIsToolAdditionDone={handleIsToolAddtionDone} sendShopIdValue={sendShopIdValue} /> : 
-                <div className="grid grid-cols-2 h-screen content-center gap-4 bg-black">
+                <div className="grid grid-cols-4 h-screen content-center gap-4 bg-black">
                     <ToolsShow sendShopIdValue={sendShopIdValue} />
                 </div>
             }

@@ -39,7 +39,7 @@ function ToolsMenu({ sendShopIdValue, transferIsAddTool }) {
                     <button type="button" onClick={handleAddTools} className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50 m-3"><FontAwesomeIcon icon={ faPlus }/> Add Tools</button>
                     <button onClick={handleDeleteAccount} type="button" className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50 m-3"><FontAwesomeIcon icon={ faTrash } /> Delete my account</button>
                 </div> : 
-                <button type="button" onClick={handleAddTools} className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">Back to list</button>
+                <button type="button" onClick={handleAddTools} className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50 m-3">Back to list</button>
             }
         </div>
     )

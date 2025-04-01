@@ -27,8 +27,7 @@ function ToolsAddition({ transferIsToolAdditionDone, sendShopIdValue }) {
         setPrice(e.target.value);
     }
 
-    const handleImageChange = (e) => {
-        console.log(e);
+    const handleImageChange = async (e) => {
         setImage(e.target.value);
     }
 
@@ -88,7 +87,7 @@ function ToolsAddition({ transferIsToolAdditionDone, sendShopIdValue }) {
                     </div>
                     <div className="my-5 grid align-between">
                         <label htmlFor="shopPhoneNo" className="text-sm/6 font-medium text-white"><FontAwesomeIcon icon={ faImage } /> Image</label>
-                        <input onChange={handleImageChange} type="file" accept="image/*" size={10} name="shopPhoneNo" className="rounded-md bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="Source" value={imageValue} />
+                        <input onChange={handleImageChange} type="text" size={10} name="shopPhoneNo" className="rounded-md bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="Source" />
                     </div>
                     <div className="flex justify-between my-5">
                         <div></div>

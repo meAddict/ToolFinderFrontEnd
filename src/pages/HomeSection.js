@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { faAddressBook, faCheck, faMagnifyingGlass, faToolbox } from '@fortawesome/free-solid-svg-icons';
+import { faAddressBook, faCheck, faMagnifyingGlass, faToolbox, faSignature, faBook, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 
 function HomeSection() {
     const [toolName, setToolName] = useState("");
@@ -37,8 +37,14 @@ function HomeSection() {
                 const data = await response.json();
                 setAllTools(data);
                 setIsSearchDone(prev => !prev);
+            } else {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message);   
+                })                                                                                      
             }
-        })
+        }).catch(error => {
+            alert(error.message)
+        });
     }
 
     return (
@@ -64,15 +70,34 @@ function HomeSection() {
                         </div>
                     </form>
                 </div> : 
-                <div>
+                <div className="bg-red-500 rounded-xl">
                     {
                         allTools.map(element => {
-                            return <div key={element.toolId}>
-                                <h1>Tool Name: {element.toolName}</h1>
-                                <h1>Tool Category: {element.toolCategory}</h1>
-                                <h1>Tool Description: {element.toolDescription}</h1>
-                                <h1>Tool Price: {element.toolPrice}</h1>
-                            </div>
+                            return (
+                                <div key={element.toolId} className="m-auto grid align-between p-20">
+                                    <img src={element.toolImage} alt="toolImage" className="align-center mb-4 w-30 h-20 rounded-md" />
+                                    <div className="grid grid-cols-2">
+                                        <h1 className="text-sm font-medium text-white mb-2"><FontAwesomeIcon icon={ faSignature }/> Name: </h1>
+                                        <h1 className="text-sm font-medium text-white mb-2">{element.toolName}</h1>
+                                    </div>
+                                    <div className="grid grid-cols-2">
+                                        <h1 className="text-sm font-medium text-white mb-2"><FontAwesomeIcon icon={ faBook }/> Description: </h1>
+                                        <h1 className="text-sm font-medium text-white mb-2">{element.toolDescription}</h1>
+                                    </div>
+                                    <div className="grid grid-cols-2">
+                                        <h1 className="text-sm font-medium text-white mb-2"><FontAwesomeIcon icon={ faMoneyBill }/> Price: </h1>
+                                        <h1 className="text-sm font-medium text-white mb-2">{element.toolPrice} ₹</h1>
+                                    </div>
+                                    <div className="grid grid-cols-2">
+                                        <h1 className="text-sm font-medium text-white mb-2"><FontAwesomeIcon icon={ faSignature }/> Shop Name: </h1>
+                                        <h1 className="text-sm font-medium text-white mb-2">{element.shopDetails.shopName}</h1>
+                                    </div>
+                                    <div className="grid grid-cols-2">
+                                        <h1 className="text-sm font-medium text-white mb-2"><FontAwesomeIcon icon={ faAddressBook }/> Shop Address: </h1>
+                                        <h1 className="text-sm font-medium text-white mb-2">{element.shopDetails.shopAddress}</h1>
+                                    </div>
+                                </div>
+                            )
                         })
                     }
                     <button type="button" onClick={handleSeachAgain} className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 ring-1 shadow-xs ring-gray-300 ring-inset hover:bg-gray-50">Search for another tool</button>

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { faScrewdriverWrench, faSignature, faTrash, faBook, faMoneyBill, faImage } from "@fortawesome/free-solid-svg-icons";
+import { faSignature, faTrash, faBook, faMoneyBill } from "@fortawesome/free-solid-svg-icons";
 
 function ToolView({ sendEachTool }) {
 
@@ -17,11 +17,15 @@ function ToolView({ sendEachTool }) {
         }).then(async (response) => {
             if(response.ok) {
                 
+            } else {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message);   
+                })                                                                                      
             }
-        })
+        }).catch(error => {
+            alert(error.message)
+        });
     }
-
-    console.log(btoa(JSON.stringify(sendEachTool.toolImage)));
 
     return (
         <div key={sendEachTool.id} className="bg-red-500 p-4 rounded-md ms-2">
@@ -29,10 +33,6 @@ function ToolView({ sendEachTool }) {
             <div className="grid grid-cols-2">
                 <h1 className="text-sm font-medium text-white mb-2"><FontAwesomeIcon icon={ faSignature }/> Name: </h1>
                 <h1 className="text-sm font-medium text-white mb-2">{sendEachTool.toolName}</h1>
-            </div>
-            <div className="grid grid-cols-2">
-                <h1 className="text-sm font-medium text-white mb-2"><FontAwesomeIcon icon={ faScrewdriverWrench }/> Category: </h1>
-                <h1 className="text-sm font-medium text-white mb-2">{sendEachTool.toolCategory}</h1>
             </div>
             <div className="grid grid-cols-2">
                 <h1 className="text-sm font-medium text-white mb-2"><FontAwesomeIcon icon={ faBook }/> Description: </h1>

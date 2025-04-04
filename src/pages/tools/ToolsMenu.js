@@ -23,8 +23,14 @@ function ToolsMenu({ sendShopIdValue, transferIsAddTool }) {
         }).then(async (response) => {
             if(response.ok) {
                 window.location.reload("/");
+            } else {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message);   
+                })                                                                                      
             }
-        })
+        }).catch(error => {
+            alert(error.message)
+        });
     }
 
     useEffect(() => {

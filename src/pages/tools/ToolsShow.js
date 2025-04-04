@@ -17,8 +17,14 @@ function ToolsShow({ sendShopIdValue }) {
             if(response.ok) {
                 const data = await response.json();
                 setAllTools(data);
+            } else {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message);   
+                })                                                                                      
             }
-        })
+        }).catch(error => {
+            alert(error.message)
+        });
     }
 
     useEffect(() => {

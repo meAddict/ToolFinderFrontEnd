@@ -34,8 +34,15 @@ function SignInSection() {
                 const data = await response.json();
                 setShopIdVal(data.shopId);
                 setIsSignInComplete(prevVal => !prevVal);
+            } else {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message);   
+                })                                                                                      
             }
-        })
+        }).catch(error => {
+            console.log(error.message);
+            alert(error.message)
+        });
     }
     
     return (

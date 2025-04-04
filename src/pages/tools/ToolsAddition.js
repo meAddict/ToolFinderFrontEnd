@@ -1,11 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 
-import { faBook, faFloppyDisk, faImage, faMoneyBill, faScrewdriverWrench, faSignature, faSquarePlus } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faFloppyDisk, faImage, faMoneyBill, faSignature, faSquarePlus } from "@fortawesome/free-solid-svg-icons";
 
 function ToolsAddition({ transferIsToolAdditionDone, sendShopIdValue }) {
     const [nameValue, setName] = useState("");
-    const [categoryValue, setCategory] = useState("");
     const [descriptionValue, setDescription] = useState("");
     const [priceValue, setPrice] = useState("");
     const [imageValue, setImage] = useState("");
@@ -13,10 +12,6 @@ function ToolsAddition({ transferIsToolAdditionDone, sendShopIdValue }) {
 
     const handleNameChange = (e) => {
         setName(e.target.value);
-    }
-
-    const handleCategoryChange = (e) => {
-        setCategory(e.target.value);
     }
 
     const handleDescriptionChange = (e) => {
@@ -42,7 +37,6 @@ function ToolsAddition({ transferIsToolAdditionDone, sendShopIdValue }) {
                 shopId: sendShopIdValue,
                 toolDetails: {
                     toolName: nameValue,
-                    toolCategory: categoryValue,
                     toolDescription: descriptionValue,
                     toolPrice: priceValue,
                     toolImage: imageValue
@@ -52,8 +46,14 @@ function ToolsAddition({ transferIsToolAdditionDone, sendShopIdValue }) {
             if(response.ok) {
                 alert("Tool addition done. Add more tools or return to tool list");
                 setIsToolAdditionDone(prev => !prev)
+            } else {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message);   
+                })                                                                                      
             }
-        })
+        }).catch(error => {
+            alert(error.message)
+        });
     }
 
     useEffect(
@@ -72,10 +72,6 @@ function ToolsAddition({ transferIsToolAdditionDone, sendShopIdValue }) {
                     <div className="my-5 grid align-between">
                         <label htmlFor="shopName" className="text-sm/6 font-medium text-white"><FontAwesomeIcon icon={ faSignature } /> Name*</label>
                         <input onChange={handleNameChange} type="text" name="shopName" className="rounded-md bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="Name" value={nameValue} required/>
-                    </div>
-                    <div className="my-5 grid align-between">
-                        <label htmlFor="shopPassword" className="text-sm/6 font-medium text-white"><FontAwesomeIcon icon={ faScrewdriverWrench } /> Category*</label>
-                        <input onChange={handleCategoryChange} type="text" name="shopPassword" className="rounded-md bg-white min-w-0 grow py-1.5 pr-3 pl-1 text-base text-gray-900 placeholder:text-gray-400 focus:outline-none sm:text-sm/6" placeholder="Category" value={categoryValue} required/>
                     </div>
                     <div className="my-5 grid align-between">
                         <label htmlFor="shopEmail" className="text-sm/6 font-medium text-white"><FontAwesomeIcon icon={ faBook } /> Description*</label>

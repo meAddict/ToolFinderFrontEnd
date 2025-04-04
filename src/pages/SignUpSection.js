@@ -68,8 +68,14 @@ function SignUpSection() {
         }).then(async (response) => {
             if(response.ok) {
                 navigate("/");
+            } else {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message);   
+                })                                                                                      
             }
-        })
+        }).catch(error => {
+            alert(error.message)
+        });
     }
     
     return (
